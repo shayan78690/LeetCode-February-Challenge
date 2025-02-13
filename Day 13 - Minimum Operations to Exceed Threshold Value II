@@ -1,0 +1,24 @@
+class Solution {
+    public int minOperations(int[] nums, int k) {
+        PriorityQueue<Long> pq = new PriorityQueue<>();
+        
+        for(long num : nums) {
+            pq.add(num);
+        }
+
+        int operation = 0;
+        while(pq.peek() < k) {
+            if(pq.size() < 2) {
+                break;
+            }
+
+            long x = pq.poll();
+            long y = pq.poll();
+
+            long val = x * 2 + y;
+            pq.add(val);
+            operation++;
+        }
+        return operation;
+    }
+}
