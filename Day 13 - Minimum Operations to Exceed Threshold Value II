@@ -7,12 +7,12 @@ class Solution {
         }
 
         int operation = 0;
-        while(pq.peek() < k) {
-            if(pq.size() < 2) {
-                break;
-            }
+        while(pq.size() >= 2) {
 
             long x = pq.poll();
+            if(x >= k) {
+                break;
+            }
             long y = pq.poll();
 
             long val = x * 2 + y;
