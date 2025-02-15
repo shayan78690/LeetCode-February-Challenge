@@ -1,0 +1,25 @@
+class Solution {
+    public int punishmentNumber(int n) {
+        int res = 0;
+        for(int i = 1; i <= n; i++) {
+            String i2 = Integer.toString(i*i);
+            if(isPartition(0, i2, i, 0)) {
+                res += (i*i);
+            }
+        }
+        return res;
+    }
+
+    public boolean isPartition(int j, String s2, int i, int current_Sum) {
+        if(j == s2.length()) {
+            return (current_Sum == i);
+        }
+        for(int index = j; index < s2.length(); index++) {
+            int val = Integer.parseInt(s2.substring(j, index+1));
+            if(isPartition(index+1, s2, i, current_Sum+val)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
