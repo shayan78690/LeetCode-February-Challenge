@@ -1,0 +1,21 @@
+class Solution {
+    public int numTilePossibilities(String tiles) {
+        Map<Character, Integer> count = new HashMap<>();
+        for (char c : tiles.toCharArray()) {
+            count.put(c, count.getOrDefault(c, 0) + 1);
+        }
+        return backtrack(count);
+    }
+
+    private int backtrack(Map<Character, Integer> count) {
+        int res = 0;
+        for (char c : count.keySet()) {
+            if (count.get(c) > 0) {
+                count.put(c, count.get(c) - 1);
+                res += 1 + backtrack(count);
+                count.put(c, count.get(c) + 1);
+            }
+        }
+        return res;
+    }
+}
